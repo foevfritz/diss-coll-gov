@@ -1,0 +1,215 @@
+\documentclass[widefront]{jura}
+\usepackage{ngerman}
+\usepackage[utf8]{inputenc}
+\usepackage[%
+  bibformat=compress,%
+  annotatorfirstsep=in,% erst ab v0.6 (vorher 'cofirstsep=in')
+  pages=format,%
+  authorformat=smallcaps,%
+  titleformat=italic,%
+  titleformat=all,%
+  titleformat=commasep,%
+  howcited=normal,%
+  commabeforerest%
+]{jurabib}% 
+\usepackage[a4paper, nohead, bottom=3cm]{geometry}
+\usepackage{url}
+\usepackage[T1]{fontenc}
+\usepackage{eurosym}
+\usepackage{eulervm}
+\usepackage{ae}
+\usepackage{times}
+\usepackage{jurabib}%juristisches Literaturverzeichnis, Optionen mit \jurabibsetup
+%\usepackage[ngerman]{babel}
+\usepackage[babel, german = guillemets]{csquotes}
+\MakeOuterQuote{"}
+
+\newcommand{\pg}[1]{\S\,#1} %\pg{x} => (Paragraf) x
+\newcommand{\Pg}[1]{\SSS\,#1} %\Pg{x} => (Paragrafen) x 
+%%%%%%%%
+
+%Konfiguriert das jurabib-Paket. Kommentare aus der Dokumentation
+\jurabibsetup{authorformat=italic,%Autor kursiv
+titleformat={commasep,all},%Komma zwischen Autor/Bearbeiter und Titel im Zitat;
+ %auch dann Kurztitel schreiben, wenn nur ein Werk des Autors
+annotatorformat=italic,%Bearbeiter kursiv
+annotatorlastsep=divis,%Bearbeiter nach Bindestrich
+commabeforerest,%Komma nach Verfasser (vor dem Rest)
+crossref={long,dynamic},%Lange Querverweise (auf Festschriften etwa)
+howcited=compare,%"zitiert als...", wenn shorttitle anders als title
+pages={always,test},%zitierten Seitenbereich immer ausgeben (always),
+bibformat={tabular,ibidem},%Litverz. tabellarisch, mit der-/dieselbe
+lookforgender,%Auf das gender-Feld achten, um ders./dies. Zitate zu erm"oglichen
+superscriptedition=switch,%Hochgestellte Auflage, wenn ssedition=1 in .bib
+dotafter=bibentry,%Punkt nach jedem Eintrag im Lit.verzeichnis
+}
+\citetitlefortype{article,periodical,incollection}%Diese immer mit Titel zitieren
+\formatpages[~]{article}{(}{)}%Zeitschriften als JZ 2001, 1057, (S.) %[, ]
+\formatpages[~]{incollection}{(}{)}%Sammbelbandbeitr"age als FS xy, 1057, (S.) %[, ]
+
+%Bei Festschriften und Zeitschriftenartikeln: "`in"' vor Titel der Sammlung
+\renewcommand{\bibjtsep}{In: } 
+\renewcommand{\bibbtsep}{In: } 
+
+%Bei Periodika (AcP et.al.) die Jahreszahl in runde (statt eckige) Klammern setzen.
+\renewcommand*{\bibpldelim}{(}
+\renewcommand*{\bibprdelim}{)}
+
+%Linke Spalte des Lit.verz. soll ein Drittel der ges. Textbreite einnehmen
+\renewcommand*{\bibleftcolumn}{\textwidth/3}
+
+%Nicht Punkt, sondern Komma nach Auflage
+\DeclareRobustCommand{\jbaensep}{,}
+
+%Bei Artikeln: Heft-Nummer in Klammern hinter dem Erscheinungsjahr, etwa 2002(7). (aus jurabib-Gruppe)
+\DeclareRobustCommand{\artnumberformat}[1]{(#1)}
+
+%Kein Komma hinter Zeitschriftenname (aus: jurabib-Gruppe #661)
+\AddTo\bibsgerman{\def\ajtsep{}}
+
+%Abstand bei Abs�tzen
+\parindent 0pt
+\parskip 2ex
+
+%Inhaltsverzeichnis in Gliederung umbenennen
+%\renewcommand{\contentsname}{Gliederung}
+
+%%%%%%%
+\tolerance=1000
+\emergencystretch=20pt
+
+\formatpages[, ][]{article}{}{}
+
+\makeatletter
+\renewcommand\@makefntext[1]{%
+   \setlength{\hangindent}{2em}
+   \noindent
+   \hb@xt@\hangindent{%
+      \hss\@textsuperscript{\normalfont\@thefnmark}\hspace{.1em}}#1}
+\makeatother
+
+\makeatletter
+\renewcommand*{\J@INumberRoot}[2]{%
+\ifcase#1\or
+\@Alph{#2}\or		% 1. Ebene A.
+\@Roman{#2}\or  % 2. Ebene I.
+\@arabic{#2}\or % 3. Ebene 1.
+\@alph{#2}\or % 4. Ebene a)
+\@alph{#2}\@alph{#2}\or  % 5. Ebene aa)
+(\@arabic{#2}\or % 6. Ebene (1)
+(\@alph{#2}\or % 7. Ebene (a)
+(\@alph{#2}\@alph{#2})\or  % 8. Ebene (aa)
+\@greek{#2})\fi} % 9. Ebene (alpha)
+\makeatother
+
+\begin{document}
+
+\frontmatter
+\author{Matrikelnummer: 123456\\
+666. Fachsemester}
+\title{Hausarbeit im sdf Recht\\
+Mysterisches Recht II}
+\date{im Anschluss an das WS 2005/2006\\
+Prof. Dr. Harry Potter\\
+Universität Hogwart}
+
+\maketitle
+
+\begin{sachverhalt}
+Ich bin ein Sachverhalt.
+
+Die Probleme
+
+\begin{itemize}
+\item hjkjhkhj
+\item tzgztgt
+\end{itemize}
+
+\begin{enumerate}
+\item ttzztrtz
+\item tzttft
+\end{enumerate}
+
+1)
+Die folgenden Überschriften
+1: Sachverhalt
+2: Gliederung
+3: Literaturverzeichnis
+sollten nicht größer sein, als die rschrift >Gutachen<
+
+2)schriften ist viel zu viel Platz (sollte genauso wie bei >Gutachten< sein)
+
+Die Ankündigung der Piratenspitze, künftig eigenständiger die Partei zu positionieren, hat für scharfe Kritik unter Parteifreunden gesorgt. Besonders an der Basis ließen manche Freibeuter ihrer Erregung freien Lauf. Auf Twitter und den Mailing-Listen forderten mehrere Piraten den Rücktritt von Parteichef Bernd »Schlömer« und dessen Stellvertreter Sebastian `Nerz'.
+
+
+
+Auch sehr wichtig! Am besten unter dem literaturverzeichnis (oder auf der folgenden seite)
+sollte dieser text noch auftauchen:
+
+
+Gebraucht werden lichen Abungen, vgl.
+Kirchner, Hildebert/Butz, Cornelie: Aungsverzeichnis der Rechtssprache,
+5. Aufl., Berlin/New York 2003
+
+
+Hat das Texfile Aussicht auf Erfolg?
+\end{sachverhalt}
+
+\tableofcontents
+
+%Literaturdatenbank (.bib kommt nicht mit dran)
+\bibliography{literaturverzeichnis}
+\bibliographystyle{jurabib}
+
+
+%%%%%%%%%%%%%%%%%%%%
+
+\mainmatter
+
+
+\boldmath
+
+%\begin{center}
+
+%Futensymbol auf Symbole (\fnsymbol) setzen; r auf 0 setzen.
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+{\noindent\large\bfseries
+Gutachten\footnote{Allnd solche des BVerfGG. Alle Artikel sind solche des GG.}
+}
+%Fussnotensymbol wieder auf arabische Zahlen setzen, Zaehler zurückstellen.
+\renewcommand{\thefootnote}{\arabic{footnote}}\addtocounter{footnote}{-1}
+
+\normalsize \mdseries
+
+%\end{center}
+
+\toc{Ebene1.1}
+\sub{Ebene2}
+\sub{Ebene3}
+\sub{Ebene4}
+\sub{Ebene5}
+\sub{Ebene6}
+\sub{Ebene7} 
+\sub{Ebene8} 
+\sub{Ebene9}
+\levelup
+\levelup
+\levelup
+\levelup
+\levelup
+\levelup
+\levelup
+\levelup 
+\toc{Ebene2.2}
+
+
+Hier wird die Arbeit geschrieben. Dies ist die Darstellung eines
+Paragraphenzeichens
+Und so wird zitiert.\footcite[Lackner][\S~123~Rn.~12]{lackner}
+
+\end{document}
+
+
+
+
+
